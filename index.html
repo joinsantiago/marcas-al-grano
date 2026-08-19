@@ -1203,9 +1203,13 @@ const CONFIG = {
   // URL de tu evento de Calendly
   calendlyUrl: 'https://calendly.com/jlopeztu/la-sociedad-agencia',
 
-  // A dónde se envían los leads (Formspree, webhook de n8n/Make, etc.)
+  // A dónde se envían los leads (Web3Forms, Formspree, webhook, etc.)
   // Déjalo vacío para probar sin enviar nada.
   formEndpoint: '',
+
+  // Solo para Web3Forms: la clave que te llega por correo al pedirla.
+  // Con Formspree déjala vacía (ahí la clave va dentro de la URL).
+  formAccessKey: '',
 
   // A dónde se envían los correos del ebook. Vacío = usa formEndpoint.
   ebookEndpoint: '',
@@ -1213,8 +1217,8 @@ const CONFIG = {
   // Enlace al PDF del ebook (se abre tras dejar el correo)
   ebookFile: 'ebook-marcas-al-grano.pdf',
 
-  // WhatsApp de respaldo si falla el envío
-  whatsapp: '573000000000'
+  // WhatsApp de respaldo si falla el envío (código de país + número, sin +)
+  whatsapp: '573160597375'
 };
 
 /* ============================================================
@@ -1375,7 +1379,13 @@ form.addEventListener('submit', async e => {
 
   const data = Object.fromEntries(new FormData(form).entries());
   data.origen = 'landing-marcasalgrano';
-  data.fecha = new Date().toISOString();
+  data.fecha = new Date().toLocaleString('es-CO', {timeZone: 'America/Bogota'});
+
+  if (CONFIG.formAccessKey) {
+    data.access_key = CONFIG.formAccessKey;
+    data.subject = `Nuevo lead: ${data.nombre || 'sin nombre'} — ${data.empresa || ''} (${data.inversion || 'sin presupuesto'})`;
+    data.from_name = 'Landing Marcas al Grano';
+  }
 
   let sent = true;
   if (CONFIG.formEndpoint) {
@@ -1500,7 +1510,18 @@ ebForm.addEventListener('submit', async e => {
       await fetch(url, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-        body: JSON.stringify({email: input.value, origen: 'ebook-landing', fecha: new Date().toISOString()})
+        body: JSON.stringify(Object.assign(
+          {
+            email: input.value,
+            origen: 'ebook-landing',
+            fecha: new Date().toLocaleString('es-CO', {timeZone: 'America/Bogota'})
+          },
+          CONFIG.formAccessKey ? {
+            access_key: CONFIG.formAccessKey,
+            subject: `Descarga de ebook: ${input.value}`,
+            from_name: 'Landing Marcas al Grano'
+          } : {}
+        ))
       });
     } catch (_) {}
   }
