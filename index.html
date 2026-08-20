@@ -349,9 +349,11 @@ header.stuck{border-bottom-color:var(--border);background:rgba(13,13,13,.92)}
    ============================================================ */
 /* Testimonios en video. Cada tarjeta respeta la proporción de su propio
    video (--ratio), así conviven uno horizontal y uno vertical sin franjas. */
+/* Se centran en vertical: un 16/9 junto a un 9/16 tienen alturas muy
+   distintas y alineados arriba la fila queda coja. */
 .tst-grid{
-  display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;
-  gap:2rem;margin-top:3.5rem;
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:2rem 2.5rem;margin-top:3.5rem;
 }
 .tst-card{flex:0 1 auto;width:min(100%,var(--w,520px));display:flex;flex-direction:column}
 .tst-video{
@@ -1192,8 +1194,8 @@ const CONFIG = {
   // formato: '16/9' si el video es horizontal, '9/16' si es vertical.
   // Si la lista queda vacía, la sección de testimonios no se muestra.
   testimonios: [
-    // {id:'ID_YOUTUBE', formato:'16/9', nombre:'Nombre Apellido', rol:'Cargo, Marca'},
-    // {id:'ID_YOUTUBE', formato:'9/16', nombre:'Nombre Apellido', rol:'Cargo, Marca'},
+    {id:'f9avuhQzspY', formato:'16/9', nombre:'Camoro Café', rol:'Café de origen · San Agustín, Huila'},
+    {id:'mdejUZ9PRiA', formato:'9/16', nombre:'La Marquesa', rol:'Marca de café'},
   ],
 
   // URL de tu evento de Calendly
@@ -1375,16 +1377,26 @@ vph.addEventListener('keydown', e => {
     ph.className = 'tst-ph';
     ph.setAttribute('aria-label', `Reproducir el testimonio de ${t.nombre || 'nuestro cliente'}`);
 
-    // Miniatura que genera YouTube. maxres no siempre existe: si falla,
-    // se cae a hq, que existe para todos los videos.
+    // Miniatura de YouTube. Los Shorts tienen una versión vertical
+    // (oardefault, "original aspect ratio") que los horizontales no tienen;
+    // sin ella el retrato saldría recortado. Se prueban en orden hasta que
+    // una cargue: hqdefault existe siempre y cierra la lista.
+    const candidatas = vertical
+      ? ['oardefault', 'oar2', 'maxresdefault', 'hqdefault']
+      : ['maxresdefault', 'hqdefault'];
+
     const img = document.createElement('img');
-    img.src = `https://i.ytimg.com/vi/${t.id}/maxresdefault.jpg`;
     img.alt = '';
     img.loading = 'lazy';
     img.decoding = 'async';
+    let intento = 0;
+    const cargarPortada = () => {
+      img.src = `https://i.ytimg.com/vi/${t.id}/${candidatas[intento]}.jpg`;
+    };
     img.addEventListener('error', () => {
-      img.src = `https://i.ytimg.com/vi/${t.id}/hqdefault.jpg`;
-    }, {once: true});
+      if (++intento < candidatas.length) cargarPortada();
+    });
+    cargarPortada();
 
     const play = document.createElement('div');
     play.className = 'play';
