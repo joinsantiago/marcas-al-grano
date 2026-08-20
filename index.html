@@ -180,7 +180,9 @@ header.stuck{border-bottom-color:var(--border);background:rgba(13,13,13,.92)}
     gap:0;background:var(--bg-alt);border-bottom:1px solid var(--border);padding:.5rem 0;
   }
   header.open .links a{display:block;padding:.95rem var(--pad);font-size:1rem}
-  header.open .nav .btn{display:inline-flex;position:absolute;top:calc(76px + 15.5rem);left:var(--pad);right:var(--pad);justify-content:center}
+  /* La altura de la lista depende de cuántos enlaces haya, así que se mide
+     en JS y llega por --links-h. El valor de reserva cubre 4 enlaces. */
+  header.open .nav .btn{display:inline-flex;position:absolute;top:calc(76px + var(--links-h,12.5rem));left:var(--pad);right:var(--pad);justify-content:center}
 }
 
 /* ============================================================
@@ -373,41 +375,6 @@ header.stuck{border-bottom-color:var(--border);background:rgba(13,13,13,.92)}
 /* ============================================================
    INVERSIÓN
    ============================================================ */
-/* Tabla comparativa de inversión */
-.sr-only{
-  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
-}
-.inv-table{
-  margin-top:3rem;background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r);overflow-x:auto;
-}
-.inv-table table{border-collapse:collapse;width:100%;min-width:520px}
-.inv-table thead th{
-  text-align:left;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--accent-br);font-weight:600;padding:1.15rem 1.6rem;
-  border-bottom:1px solid var(--border-hi);
-}
-.inv-table tbody th{
-  text-align:left;font-weight:600;font-size:1.02rem;color:var(--cream);
-  padding:1.25rem 1.6rem;border-bottom:1px solid var(--border);
-}
-.inv-table tbody th sup{color:var(--accent-br);font-size:.55em;vertical-align:super}
-.inv-table tbody th span{
-  display:block;font-weight:400;font-size:.84rem;color:var(--dim);margin-top:.2rem;
-}
-.inv-table tbody td{
-  padding:1.25rem 1.6rem;border-bottom:1px solid var(--border);
-  color:var(--muted);font-size:.93rem;vertical-align:middle;
-}
-.inv-table tbody tr:last-child th,
-.inv-table tbody tr:last-child td{border-bottom:0}
-.inv-table .amt{
-  font-family:var(--serif);font-size:1.35rem;color:var(--cream);white-space:nowrap;
-  font-variant-numeric:tabular-nums;
-}
-.inv-table .amt small{font-family:var(--sans);font-size:.62em;color:var(--muted)}
-.inv-note{margin:2.5rem auto 0;max-width:60ch;text-align:center;font-size:.93rem;color:var(--dim)}
 
 /* ============================================================
    EBOOK
@@ -605,7 +572,6 @@ footer{
 @media(max-width:1024px){
   .progs{grid-template-columns:1fr;max-width:560px;margin-inline:auto}
   .dees{grid-template-columns:repeat(2,1fr)}
-  .inv-table thead th,.inv-table tbody th,.inv-table tbody td{padding:1rem 1.1rem}
 }
 @media(max-width:820px){
   .cases{grid-template-columns:1fr}
@@ -636,7 +602,6 @@ footer{
       <li><a href="#programas">Programas</a></li>
       <li><a href="#metodologia">Metodología</a></li>
       <li><a href="#casos">Casos</a></li>
-      <li><a href="#inversion">Inversión</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <a href="#agenda" class="btn">Agenda tu diagnóstico</a>
@@ -964,70 +929,6 @@ footer{
   </div>
 </section>
 
-<!-- ══════════════ INVERSIÓN ══════════════ -->
-<section class="sec" id="inversion">
-  <div class="wrap">
-    <div class="center narrow">
-      <span class="eyebrow rv">Rango de inversión</span>
-      <h2 class="rv">Transparencia antes de la llamada</h2>
-      <p class="lead rv" style="margin-top:1.2rem">Estos son nuestros programas y lo que cuesta cada uno. Sin cotizaciones sorpresa ni llamadas para averiguar el precio.</p>
-    </div>
-    <div class="inv-table rv">
-      <table>
-        <caption class="sr-only">Programas, duración e inversión</caption>
-        <thead>
-          <tr><th scope="col">Programa</th><th scope="col">Duración</th><th scope="col">Inversión</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Estrategia al Grano<sup>®</sup><span>La hoja de ruta</span></th>
-            <td>Entrega única</td>
-            <td class="amt">USD $1.200</td>
-          </tr>
-          <tr>
-            <th scope="row">Marca Base<sup>®</sup><span>Marca desde cero</span></th>
-            <td>30 días</td>
-            <td class="amt">USD $1.500</td>
-          </tr>
-          <tr>
-            <th scope="row">Escala tu Marca<sup>®</sup><span>Evolución de marca</span></th>
-            <td>45 a 90 días</td>
-            <td class="amt">USD $2.300</td>
-          </tr>
-          <tr>
-            <th scope="row">Dirección Estratégica<sup>®</sup><span>Acompañamiento</span></th>
-            <td>90 días</td>
-            <td class="amt">USD $1.000 <small>/mes</small></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="inv-note rv">Si tu proyecto todavía no se ajusta a estos rangos, no hace falta agendar la llamada — sigue construyendo y vuelve cuando sea el momento.</p>
-  </div>
-</section>
-
-<!-- ══════════════ EBOOK ══════════════ -->
-<section class="sec alt grain" id="ebook">
-  <div class="wrap">
-    <div class="ebook rv">
-      <div class="ebook-art" aria-hidden="true">
-        <p class="t">De buen café<em>a gran marca</em></p>
-        <p class="s">El sistema para dejar de vender café y empezar a construir una marca que se paga mejor.</p>
-        <p class="m">MARCAS AL GRANO®</p>
-      </div>
-      <div>
-        <span class="eyebrow">Guía gratuita</span>
-        <h2>¿Todavía no es momento de una llamada?</h2>
-        <p class="lead">Llévate el ebook. Adentro está el sistema completo: por qué la calidad dejó de ser diferencial, cómo se construye percepción de valor y los errores silenciosos que están frenando tu marca.</p>
-        <form class="ebook-form" id="ebookForm" novalidate>
-          <input type="email" name="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
-          <button type="submit" class="btn">Descargar gratis</button>
-        </form>
-        <p class="note" id="ebookMsg">15 páginas · PDF · Sin costo</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════ FORMULARIO / AGENDA ══════════════ -->
 <section class="sec" id="agenda">
@@ -1205,8 +1106,31 @@ footer{
   </div>
 </div>
 
+<!-- ══════════════ EBOOK ══════════════ -->
+<section class="sec alt grain" id="ebook">
+  <div class="wrap">
+    <div class="ebook rv">
+      <div class="ebook-art" aria-hidden="true">
+        <p class="t">De buen café<em>a gran marca</em></p>
+        <p class="s">El sistema para dejar de vender café y empezar a construir una marca que se paga mejor.</p>
+        <p class="m">MARCAS AL GRANO®</p>
+      </div>
+      <div>
+        <span class="eyebrow">Guía gratuita</span>
+        <h2>¿Todavía no es momento de una llamada?</h2>
+        <p class="lead">Llévate el ebook. Adentro está el sistema completo: por qué la calidad dejó de ser diferencial, cómo se construye percepción de valor y los errores silenciosos que están frenando tu marca.</p>
+        <form class="ebook-form" id="ebookForm" novalidate>
+          <input type="email" name="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+          <button type="submit" class="btn">Descargar gratis</button>
+        </form>
+        <p class="note" id="ebookMsg">15 páginas · PDF · Sin costo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════ FAQ ══════════════ -->
-<section class="sec alt grain" id="faq">
+<section class="sec" id="faq">
   <div class="wrap">
     <div class="center narrow">
       <span class="eyebrow rv">Preguntas frecuentes</span>
@@ -1262,7 +1186,6 @@ footer{
         <a href="#programas">Programas</a>
         <a href="#metodologia">Metodología</a>
         <a href="#casos">Casos</a>
-        <a href="#inversion">Inversión</a>
         <a href="#faq">FAQ</a>
       </nav>
     </div>
@@ -1322,6 +1245,12 @@ const burger = document.getElementById('burger');
 burger.addEventListener('click', () => {
   const open = hd.classList.toggle('open');
   burger.setAttribute('aria-expanded', open);
+  if (open) {
+    // El botón de agendar se coloca debajo de la lista: medimos su alto real
+    // para no depender de cuántos enlaces tenga el menú.
+    const links = document.querySelector('.links');
+    if (links) hd.style.setProperty('--links-h', links.offsetHeight + 'px');
+  }
 });
 document.querySelectorAll('.links a, .nav .btn').forEach(a =>
   a.addEventListener('click', () => {
