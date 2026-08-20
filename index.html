@@ -1203,11 +1203,12 @@ const CONFIG = {
 
   // A dónde se envían los leads (Web3Forms, Formspree, webhook, etc.)
   // Déjalo vacío para probar sin enviar nada.
-  formEndpoint: '',
+  formEndpoint: 'https://api.web3forms.com/submit',
 
   // Solo para Web3Forms: la clave que te llega por correo al pedirla.
   // Con Formspree déjala vacía (ahí la clave va dentro de la URL).
-  formAccessKey: '',
+  // No es un secreto: es pública por diseño, va en el HTML del navegador.
+  formAccessKey: 'e19ce545-b94c-485d-aecc-ee57c10ff14a',
 
   // A dónde se envían los correos del ebook. Vacío = usa formEndpoint.
   ebookEndpoint: '',
