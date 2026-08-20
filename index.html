@@ -347,30 +347,32 @@ header.stuck{border-bottom-color:var(--border);background:rgba(13,13,13,.92)}
 /* ============================================================
    TESTIMONIOS
    ============================================================ */
-.tst{position:relative;max-width:780px;margin:3.5rem auto 0;text-align:center}
-.tst-track{position:relative;min-height:270px}
-.tst-item{
-  position:absolute;inset:0;opacity:0;visibility:hidden;
-  transition:opacity .5s ease;pointer-events:none;
+/* Testimonios en video. Cada tarjeta respeta la proporción de su propio
+   video (--ratio), así conviven uno horizontal y uno vertical sin franjas. */
+.tst-grid{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;
+  gap:2rem;margin-top:3.5rem;
 }
-.tst-item.on{opacity:1;visibility:visible;pointer-events:auto;position:relative}
-.tst-av{
-  width:64px;height:64px;border-radius:50%;margin:0 auto 1.5rem;display:grid;place-items:center;
-  border:1px solid var(--border-hi);background:rgba(97,70,51,.18);
-  font-family:var(--serif);font-size:1.5rem;color:var(--accent-br);
+.tst-card{flex:0 1 auto;width:min(100%,var(--w,520px));display:flex;flex-direction:column}
+.tst-video{
+  position:relative;aspect-ratio:var(--ratio,16/9);width:100%;
+  border-radius:var(--r);overflow:hidden;background:#000;
+  border:1px solid var(--border);box-shadow:0 24px 60px rgba(0,0,0,.5);
 }
-.tst-item blockquote{
-  margin:0 0 1.5rem;font-family:var(--serif);font-style:italic;
-  font-size:clamp(1.15rem,2.3vw,1.5rem);line-height:1.5;
+.tst-video iframe{width:100%;height:100%;border:0;display:block}
+.tst-ph{
+  position:absolute;inset:0;display:grid;place-items:center;
+  cursor:pointer;border:0;padding:0;width:100%;background:transparent;
 }
-.tst-name{font-weight:600;font-size:1rem}
-.tst-role{color:var(--dim);font-size:.9rem}
-.dots{display:flex;gap:.55rem;justify-content:center;margin-top:2.2rem}
-.dots button{
-  width:9px;height:9px;padding:0;border-radius:999px;border:0;cursor:pointer;
-  background:var(--border-hi);transition:width .3s,background .3s;
-}
-.dots button[aria-selected="true"]{width:30px;background:var(--accent-lt)}
+.tst-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tst-ph::after{content:"";position:absolute;inset:0;background:rgba(11,11,15,.34);transition:background .25s}
+.tst-ph:hover::after{background:rgba(11,11,15,.16)}
+.tst-ph .play{position:relative;z-index:1;width:64px;height:64px}
+.tst-ph .play svg{width:22px;height:22px}
+.tst-ph:focus-visible{outline:2px solid var(--accent-br);outline-offset:3px}
+.tst-cred{margin-top:1.1rem;text-align:center}
+.tst-name{font-weight:600;font-size:1rem;margin:0}
+.tst-role{color:var(--dim);font-size:.9rem;margin:.15rem 0 0}
 
 /* ============================================================
    INVERSIÓN
@@ -897,35 +899,16 @@ footer{
 </section>
 
 <!-- ══════════════ TESTIMONIOS ══════════════ -->
-<section class="sec alt grain" id="testimonios">
+<section class="sec alt grain" id="testimonios" hidden>
   <div class="wrap">
     <div class="center narrow">
       <span class="eyebrow rv">Testimonios</span>
       <h2 class="rv">Lo que dicen nuestros clientes</h2>
+      <p class="lead rv" style="margin-top:1.2rem">Sin guion y sin edición. Ellos cuentan qué cambió en su marca.</p>
     </div>
-    <div class="tst rv">
-      <div class="tst-track" id="tstTrack">
-        <div class="tst-item on">
-          <div class="tst-av">C</div>
-          <blockquote>“Marcas al Grano entendió nuestra esencia desde el primer día. Pasamos de ser ‘otro café más’ a tener una identidad que nuestros clientes reconocen al instante.”</blockquote>
-          <p class="tst-name">Carlos Mendoza</p>
-          <p class="tst-role">Fundador, Café Origen</p>
-        </div>
-        <div class="tst-item">
-          <div class="tst-av">M</div>
-          <blockquote>“La inversión se pagó sola. Después del rebranding pudimos subir precios un 40% y nuestros clientes lo celebraron.”</blockquote>
-          <p class="tst-name">María López</p>
-          <p class="tst-role">CEO, Tostadores del Sur</p>
-        </div>
-        <div class="tst-item">
-          <div class="tst-av">A</div>
-          <blockquote>“No solo nos dieron un logo bonito. Nos dieron claridad sobre quiénes somos y cómo comunicarlo. Eso no tiene precio.”</blockquote>
-          <p class="tst-name">Andrés Ruiz</p>
-          <p class="tst-role">Director, Finca La Esperanza</p>
-        </div>
-      </div>
-      <div class="dots" id="tstDots" role="tablist" aria-label="Testimonios"></div>
-    </div>
+    <!-- Se arma solo desde CONFIG.testimonios. Si no hay ninguno con ID,
+         la sección entera se oculta en vez de dejar un hueco. -->
+    <div class="tst-grid rv" id="tstGrid"></div>
   </div>
 </section>
 
@@ -1205,6 +1188,14 @@ const CONFIG = {
   // ID del video de YouTube. De https://youtu.be/AbC123xyz  →  'AbC123xyz'
   youtubeId: 'dDSLKoJLxeU',
 
+  // Testimonios en video (YouTube, pueden ser "no listados").
+  // formato: '16/9' si el video es horizontal, '9/16' si es vertical.
+  // Si la lista queda vacía, la sección de testimonios no se muestra.
+  testimonios: [
+    // {id:'ID_YOUTUBE', formato:'16/9', nombre:'Nombre Apellido', rol:'Cargo, Marca'},
+    // {id:'ID_YOUTUBE', formato:'9/16', nombre:'Nombre Apellido', rol:'Cargo, Marca'},
+  ],
+
   // URL de tu evento de Calendly
   calendlyUrl: 'https://calendly.com/jlopeztu/la-sociedad-agencia',
 
@@ -1359,30 +1350,82 @@ vph.addEventListener('keydown', e => {
 /* ============================================================
    CARRUSEL DE TESTIMONIOS
    ============================================================ */
-const items = [...document.querySelectorAll('.tst-item')];
-const dotsBox = document.getElementById('tstDots');
-let cur = 0, timer;
+(function testimoniosEnVideo() {
+  const sec  = document.getElementById('testimonios');
+  const grid = document.getElementById('tstGrid');
+  const lista = (CONFIG.testimonios || []).filter(t => t && t.id);
 
-items.forEach((_, i) => {
-  const b = document.createElement('button');
-  b.setAttribute('role', 'tab');
-  b.setAttribute('aria-label', `Testimonio ${i + 1}`);
-  b.setAttribute('aria-selected', i === 0);
-  b.addEventListener('click', () => { show(i); restart(); });
-  dotsBox.appendChild(b);
-});
-const dots = [...dotsBox.children];
+  // Sin videos configurados no dejamos un hueco: se oculta la sección.
+  if (!lista.length) { sec.hidden = true; return; }
+  sec.hidden = false;
 
-function show(i) {
-  cur = (i + items.length) % items.length;
-  items.forEach((el, k) => el.classList.toggle('on', k === cur));
-  dots.forEach((d, k) => d.setAttribute('aria-selected', k === cur));
-}
-function restart() {
-  clearInterval(timer);
-  if (!reduce) timer = setInterval(() => show(cur + 1), 6500);
-}
-restart();
+  lista.forEach(t => {
+    const vertical = t.formato === '9/16';
+
+    const card = document.createElement('article');
+    card.className = 'tst-card';
+    card.style.setProperty('--ratio', vertical ? '9 / 16' : '16 / 9');
+    card.style.setProperty('--w', vertical ? '300px' : '520px');
+
+    const shell = document.createElement('div');
+    shell.className = 'tst-video';
+
+    const ph = document.createElement('button');
+    ph.type = 'button';
+    ph.className = 'tst-ph';
+    ph.setAttribute('aria-label', `Reproducir el testimonio de ${t.nombre || 'nuestro cliente'}`);
+
+    // Miniatura que genera YouTube. maxres no siempre existe: si falla,
+    // se cae a hq, que existe para todos los videos.
+    const img = document.createElement('img');
+    img.src = `https://i.ytimg.com/vi/${t.id}/maxresdefault.jpg`;
+    img.alt = '';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.addEventListener('error', () => {
+      img.src = `https://i.ytimg.com/vi/${t.id}/hqdefault.jpg`;
+    }, {once: true});
+
+    const play = document.createElement('div');
+    play.className = 'play';
+    play.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+
+    ph.append(img, play);
+    shell.appendChild(ph);
+
+    ph.addEventListener('click', () => {
+      metaTrackCustom('VerTestimonio', {cliente: t.nombre || t.id});
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${t.id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+      f.title = `Testimonio de ${t.nombre || 'cliente'}`;
+      f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+      f.allowFullscreen = true;
+      shell.replaceChildren(f);
+    });
+
+    card.appendChild(shell);
+
+    if (t.nombre || t.rol) {
+      const cred = document.createElement('div');
+      cred.className = 'tst-cred';
+      if (t.nombre) {
+        const n = document.createElement('p');
+        n.className = 'tst-name';
+        n.textContent = t.nombre;
+        cred.appendChild(n);
+      }
+      if (t.rol) {
+        const r = document.createElement('p');
+        r.className = 'tst-role';
+        r.textContent = t.rol;
+        cred.appendChild(r);
+      }
+      card.appendChild(cred);
+    }
+
+    grid.appendChild(card);
+  });
+})();
 
 /* ============================================================
    FORMULARIO EN DOS PASOS
