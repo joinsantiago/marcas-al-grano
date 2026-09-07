@@ -408,6 +408,7 @@ header.stuck{border-bottom-color:var(--border);background:rgba(13,13,13,.92)}
 .ebook-form{display:flex;gap:.7rem;margin-top:1.6rem;flex-wrap:wrap}
 .ebook-form input{flex:1 1 220px}
 @media(max-width:800px){.ebook{grid-template-columns:1fr;gap:2rem}}
+#checklist .consent{font-size:.72rem;margin-top:.55rem;max-width:44ch}
 
 /* ============================================================
    FORMULARIO
@@ -1096,6 +1097,30 @@ footer{
   </div>
 </div>
 
+<!-- ══════════════ CHECKLIST (NEWSLETTER) ══════════════ -->
+<section class="sec grain" id="checklist">
+  <div class="wrap">
+    <div class="ebook rv">
+      <div class="ebook-art" aria-hidden="true">
+        <p class="t">12 preguntas<em>antes de lanzar</em></p>
+        <p class="s">Ponle una nota sobre 12 a tu marca y descubre si es momento de diseñar, de corregir o de detenerte.</p>
+        <p class="m">MARCAS AL GRANO®</p>
+      </div>
+      <div>
+        <span class="eyebrow">Autodiagnóstico gratuito</span>
+        <h2>¿Tu marca está lista para salir al mercado?</h2>
+        <p class="lead">Responde 12 preguntas y ponle una nota sobre 12 a tu marca. En diez minutos vas a saber si es momento de diseñar, de corregir, o de detenerte antes de gastar en empaques que no funcionan.</p>
+        <form class="ebook-form" id="checklistForm" novalidate>
+          <input type="email" name="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+          <button type="submit" class="btn">Recibir el checklist</button>
+        </form>
+        <p class="note" id="checklistMsg">16 páginas · PDF · Te llega por correo</p>
+        <p class="note consent">Al suscribirte quedas en la lista de Marcas al Grano. Puedes darte de baja cuando quieras.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════ EBOOK ══════════════ -->
 <section class="sec alt grain" id="ebook">
   <div class="wrap">
@@ -1176,6 +1201,7 @@ footer{
         <a href="#programas">Programas</a>
         <a href="#metodologia">Metodología</a>
         <a href="#casos">Casos</a>
+        <a href="#checklist">Checklist</a>
         <a href="#faq">FAQ</a>
       </nav>
     </div>
