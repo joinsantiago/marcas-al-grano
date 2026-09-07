@@ -63,6 +63,7 @@ enlaces o claves.
 | **Video VSL** | YouTube `dDSLKoJLxeU` | 2 min 10 s, **no listado** |
 | **Testimonios** | `f9avuhQzspY` (Camoro, 16:9) · `mdejUZ9PRiA` (La Marquesa, Short 9:16) | No listados |
 | **Formularios** | Web3Forms, key `e19ce545-b94c-485d-aecc-ee57c10ff14a` | Los leads llegan a **jlopeztu@gmail.com** |
+| **Kit** (newsletter) | Formulario `9889314` · plan gratuito | Entrega el checklist por doble opt-in y guarda la lista. El PDF lo aloja Kit, no el hosting |
 | **WhatsApp de respaldo** | `573160597375` | Solo aparece si falla el envío del formulario |
 
 ### Web3Forms: límites que importan
@@ -78,6 +79,29 @@ enlaces o claves.
 - Web3Forms **solo acepta peticiones desde un navegador**. Probarlo con
   `curl` desde un servidor devuelve "method is not allowed" — no es un fallo
   de la clave.
+
+### Kit: lo que da el plan gratuito
+
+- **10.000 suscriptores y envíos ilimitados**, pero **un solo formulario y una
+  sola automatización**. El ebook sigue en Web3Forms justamente para no gastar
+  ese formulario: llevarlo también a Kit obliga a pagar.
+- **Su marca va al pie de cada correo** (*Built with Kit*), junto a su dirección
+  de Seattle y los enlaces de baja en inglés. Nada de eso se quita sin pagar;
+  solo el cuerpo del mensaje se escribe en español.
+- **La entrega es por doble opt-in y en un solo correo.** El suscriptor recibe
+  la confirmación y, al hacer clic, **el PDF se descarga en la redirección** —
+  no llega un segundo correo. Se configura en *Settings → Confirmation email*
+  con *After confirming redirect to: **Download***.
+- Por eso la landing **no** ofrece descarga inmediata: si la ofreciera, nadie
+  confirmaría y no habría lista.
+- **`Auto-confirm new subscribers` debe quedar SIN marcar.** Si se marca, se
+  salta la confirmación y con ella se cae la entrega del PDF.
+- El campo del formulario **debe llamarse `email_address`**. Con cualquier otro
+  nombre, Kit ignora el envío en silencio.
+- **Kit acepta el POST cross-origin** desde el navegador (verificado: `status
+  200`, `type cors`), así que la landing lee la respuesta y distingue el fallo
+  del éxito en vez de asumir que salió bien.
+- **El panel está en inglés**, aunque los correos al suscriptor van en español.
 
 ### Calendly: el plan gratuito y su promoción
 
@@ -113,8 +137,15 @@ advanced matching (correo y teléfono hasheados por Meta en el navegador).
 | **`Lead`** | Envío con presupuesto **calificado** | Estándar ← *el que importa* |
 | `LeadNoCalificado` | Envío con "Menos de USD $1.000" | Personalizado |
 | `Schedule` | Calendly confirma la reserva | Estándar |
-| `CompleteRegistration` | Descarga del ebook | Estándar |
+| `CompleteRegistration` | Descarga del ebook (`content_name: Ebook Marcas al Grano`) | Estándar |
+| `CompleteRegistration` | Suscripción al checklist (`content_name: Checklist 12 preguntas`) | Estándar |
 | `Contact` | Clic en el WhatsApp de respaldo | Estándar |
+
+**El checklist no dispara `Lead`** a propósito: `Lead` está reservado a quien
+declara presupuesto calificado. Meter ahí suscriptores de un PDF gratuito haría
+que Meta optimice hacia gente sin dinero. Los dos imanes comparten
+`CompleteRegistration` y se separan por `content_name`, que es sobre lo que se
+filtra la conversión personalizada en el Administrador de anuncios.
 
 **Por qué `Lead` y `LeadNoCalificado` están separados:** si se optimiza por
 `Lead` a secas, Meta trae gente sin presupuesto porque es más barata. Con la
@@ -126,7 +157,7 @@ separación se optimiza por el bueno y se puede excluir al otro.
 
 ```
 hero → video (VSL) → problema → cita → programas → metodología
-     → casos → testimonios → agenda → ebook → FAQ → footer
+     → casos → testimonios → agenda → checklist → ebook → FAQ → footer
 ```
 
 Decisiones que no son obvias al leer el HTML:
@@ -139,6 +170,17 @@ Decisiones que no son obvias al leer el HTML:
 - **El formulario vive en un modal** (`#agendaModal`), no en la página. Cada
   botón "Es para mí" de un programa lo abre **con ese programa ya
   seleccionado**. Todo lo que apunte a `#agenda` abre el modal.
+- **El checklist va después de agendar y antes del ebook.** Después, por lo
+  mismo que el ebook: encima del formulario le da salida fácil a quien ya venía
+  convencido. Antes del ebook, porque es la pieza más fuerte — hace que el
+  lector se ponga una nota sobre 12 y cierra invitando a conversar, así que es
+  la única que devuelve gente al calendario.
+- **El PDF del checklist no está en el servidor.** Lo aloja Kit, para que el
+  enlace no sea adivinable. El archivo del repo es solo la copia versionada, y
+  como el repo es público el bloqueo es blando: quien lo busque en GitHub lo
+  encuentra. Se acepta, igual que con el ebook.
+- **El checklist no se añadió al menú de cabecera**, solo al pie: competiría con
+  el botón "Agenda tu diagnóstico", que es el trabajo de la página.
 - **Los testimonios se arman desde `CONFIG.testimonios`.** Si la lista queda
   vacía, la sección **se oculta sola** en vez de dejar un hueco.
 - **El logo es un PNG negro usado como máscara CSS**, no como imagen: así
@@ -217,6 +259,11 @@ Ordenados por lo que más pesa sobre la agenda.
    otro. Es cosmético (el `canonical` ya resuelve el SEO y el píxel no se
    ve afectado), pero ensucia los informes. El `.htaccess` del repo ya lo
    corrige — **solo hay que subirlo**, cosa que aún no se hizo.
+6. **Dominio remitente propio en Kit.** Hoy los correos salen desde la
+   infraestructura de Kit. Configurar `somosmarcasalgrano.com` con sus
+   registros DNS en Hostinger mejora que no caigan en spam.
+7. **Borrar los suscriptores de prueba de Kit**: `prueba-cors@` y
+   `prueba-landing@somosmarcasalgrano.com`, usados para verificar el circuito.
 
 ### Del análisis de conversión
 
