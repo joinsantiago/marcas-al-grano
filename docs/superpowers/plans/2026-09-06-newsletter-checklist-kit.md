@@ -58,19 +58,19 @@ En Kit → *Grow* → *Landing Pages & Forms* → *Create new* → **Form** → 
 
 - [ ] **Paso 2: Subir el PDF y activar la entrega**
 
-En los ajustes del formulario → *Incentive email* (o *Settings → Incentive*):
+**Settings** → pestaña **Confirmation email**:
 
-1. Activar el envío del incentivo.
-2. En el tipo de entrega elegir **Download** — no *Redirect to URL*.
-3. Subir `checklist-12-preguntas.pdf`.
+1. Dejar marcada **Send confirmation email**.
+2. Dejar **Auto-confirm new subscribers** SIN marcar: auto-confirmar salta la confirmación y con ella se cae la entrega.
+3. En **After confirming redirect to:** elegir **Download** (viene en *URL*) y subir `checklist-12-preguntas.pdf`.
 
 Es el mecanismo que hace todo el trabajo: se configura por formulario y **no** consume la única automatización del plan gratuito.
 
-- [ ] **Paso 3: Escribir los dos correos en español**
+- [ ] **Paso 3: Escribir el correo en español**
 
-Kit los trae en inglés por defecto. Hay que reescribirlos: el suscriptor es un productor o tostador colombiano.
+Kit lo trae en inglés. Hay que reescribirlo: el suscriptor es un productor o tostador colombiano.
 
-*Correo de confirmación* — asunto sugerido: `Confirma tu correo y recibe el checklist`
+**Es un solo correo, no dos.** Kit entrega el PDF en la redirección posterior al clic de confirmación, así que este correo carga toda la promesa. Se edita con **Edit Email Contents**. Asunto: `Confirma tu correo y recibe el checklist`
 
 ```
 Hola:
@@ -83,20 +83,7 @@ Confirma tu correo con el botón de abajo y te lo enviamos enseguida.
 Marcas al Grano®
 ```
 
-*Correo de entrega* — asunto sugerido: `Tu checklist: 12 preguntas antes de lanzar tu marca`
-
-```
-Aquí está tu checklist.
-
-Son 12 preguntas. Respóndelas con honestidad y ponle una nota a tu
-marca sobre 12: vas a saber si es momento de diseñar, de corregir, o
-de detenerte antes de gastar en empaques que no funcionan.
-
-Si al terminar te quedan preguntas sin resolver, agenda un diagnóstico
-de 30 minutos: https://somosmarcasalgrano.com/#agenda
-
-Marcas al Grano®
-```
+No hace falta un segundo correo con la invitación a agendar: la última página del propio PDF ya cierra con *"si descubriste que todavía existen preguntas sin resolver, conversemos"*. Si algún día se quiere reforzar, sería un *broadcast* aparte, no parte de esta entrega.
 
 - [ ] **Paso 4: Sacar la URL de acción**
 
@@ -110,7 +97,7 @@ Esa URL es la que va a `CONFIG.checklistEndpoint`. **No es un secreto**: viaja e
 
 - [ ] **Paso 5: Probar el circuito desde el propio Kit**
 
-Antes de tocar la landing, suscribirse desde la página alojada del formulario que da Kit, con un correo real. Deben llegar los dos correos y el PDF debe abrir. Si esto falla, el problema es de Kit y no tiene sentido seguir.
+Antes de tocar la landing, suscribirse desde la página alojada del formulario que da Kit, con un correo real. Debe llegar el correo de confirmación, y al hacer clic debe descargarse el PDF y abrir. Si esto falla, el problema es de Kit y no tiene sentido seguir.
 
 ---
 
@@ -326,7 +313,7 @@ ckForm.addEventListener('submit', async e => {
 
   ckForm.style.display = 'none';
   ckMsg.style.color = 'var(--accent-br)';
-  ckMsg.textContent = 'Revisa tu correo: te enviamos un enlace para confirmar. Al confirmar te llega el checklist.';
+  ckMsg.textContent = 'Revisa tu correo: te enviamos un enlace para confirmar. Al confirmar se descarga tu checklist.';
 });
 ```
 
@@ -356,7 +343,7 @@ Devolver `checklistEndpoint` a su valor real antes de seguir.
 
 Con el endpoint real y **un correo al que tengas acceso**: enviar, y comprobar las tres cosas.
 
-1. El formulario desaparece y sale `Revisa tu correo: te enviamos un enlace para confirmar. Al confirmar te llega el checklist.`
+1. El formulario desaparece y sale `Revisa tu correo: te enviamos un enlace para confirmar. Al confirmar se descarga tu checklist.`
 2. El suscriptor aparece en el panel de Kit.
 3. Llega el correo de confirmación.
 
@@ -419,8 +406,10 @@ Después de *Web3Forms: límites que importan*, en el mismo tono:
 - **La entrega es por doble opt-in**: el suscriptor recibe un correo de
   confirmación y solo al hacer clic le llega el PDF. Por eso la landing **no**
   ofrece descarga inmediata: si la ofreciera, nadie confirmaría y no habría lista.
-- El *incentive email* se configura **por formulario**, no por lista, y no
-  consume la única automatización del plan.
+- La entrega se configura **por formulario** (*Settings → Confirmation email*,
+  con *After confirming redirect to: Download*), no por lista, y no consume la
+  única automatización del plan. Es **un solo correo**: el PDF llega en la
+  redirección posterior al clic de confirmación.
 - **El panel está en inglés**, aunque los correos al suscriptor van en español.
 ```
 
@@ -499,7 +488,7 @@ Es el pendiente número 1 del README y aquí se cubre. Con un correo real:
 
 1. Suscribirse desde el móvil.
 2. Llega el correo de confirmación.
-3. Al confirmar, llega el correo con el PDF.
+3. Al confirmar, el clic lleva a la descarga del PDF.
 4. El PDF abre y son 16 páginas.
 5. El suscriptor aparece en el panel de Kit.
 
