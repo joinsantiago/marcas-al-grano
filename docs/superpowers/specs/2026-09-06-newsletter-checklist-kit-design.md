@@ -39,9 +39,10 @@ Se elige **Kit**:
 
 - El techo de 10.000 suscriptores no se toca en años. Los 250 de MailerLite se
   llenan en semanas con tráfico pagado de Meta.
-- Trae la entrega del imán de fábrica: el *incentive email* se configura **por
-  formulario**, se le adjunta el archivo en modo "download" y no consume la
-  única automatización del plan.
+- Trae la entrega del imán de fábrica: el correo de confirmación se configura
+  **por formulario** (*Settings → Confirmation email*) y en *After confirming
+  redirect to* se elige **Download** con el archivo. No consume la única
+  automatización del plan.
 - Publicar un número es escribir un *broadcast* y enviarlo. No requiere tocar
   código ni depender de Santiago.
 
@@ -149,7 +150,7 @@ Estados del formulario:
 | --- | --- |
 | Correo inválido | `Escribe un correo válido.` (en rojo, como el ebook) |
 | Enviando | El botón pasa a `Enviando…` y se deshabilita |
-| Éxito | `Revisa tu correo: te enviamos un enlace para confirmar. Al confirmar te llega el checklist.` |
+| Éxito | `Revisa tu correo: te enviamos un enlace para confirmar. Al confirmar se descarga tu checklist.` |
 | Fallo de red | `No pudimos suscribirte. Escríbenos por WhatsApp y te lo enviamos.` con el `whatsapp` de respaldo que ya existe en CONFIG |
 
 ### Menú
@@ -188,7 +189,7 @@ sitios en producción, y el píxel en local ensucia datos reales. La prueba es e
 producción, con un correo real:
 
 1. Suscribirse desde la sección nueva → llega el correo de confirmación.
-2. Confirmar → llega el correo con el PDF, y el PDF abre.
+2. Confirmar → el clic lleva a la descarga del PDF, y el PDF abre.
 3. El suscriptor aparece en el panel de Kit.
 4. En el Administrador de eventos de Meta aparece `CompleteRegistration` con
    `content_name: 'Checklist 12 preguntas'`.
@@ -206,7 +207,7 @@ el PDF no va al servidor.
 
 **Jose Arturo / Santiago (en Kit y Meta):**
 
-1. Crear el formulario en Kit y activar su *incentive email* en modo download.
+1. Crear el formulario en Kit y poner su confirmación en modo **Download**.
 2. Subir `checklist-12-preguntas.pdf` a Kit.
 3. Redactar en español el correo de confirmación y el de entrega.
 4. Entregar la **URL de acción del formulario** para ponerla en CONFIG.
