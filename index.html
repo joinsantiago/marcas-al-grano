@@ -1247,6 +1247,12 @@ const CONFIG = {
   // Enlace al PDF del ebook (se abre tras dejar el correo)
   ebookFile: 'ebook-marcas-al-grano.pdf',
 
+  // URL de acción del formulario de Kit que entrega el checklist.
+  // Sale del embed HTML del formulario en app.kit.com (atributo action).
+  // No es un secreto: viaja en el HTML, igual que la clave de Web3Forms.
+  // Vacío = no envía nada.
+  checklistEndpoint: 'https://app.kit.com/forms/9889314/subscriptions',
+
   // WhatsApp de respaldo si falla el envío (código de país + número, sin +)
   whatsapp: '573160597375'
 };
@@ -1697,6 +1703,56 @@ ebForm.addEventListener('submit', async e => {
   ebForm.style.display = 'none';
   ebMsg.style.color = 'var(--accent-br)';
   ebMsg.innerHTML = `Listo. <a href="${CONFIG.ebookFile}" target="_blank" rel="noopener" style="color:var(--accent-br)">Abre tu ebook aquí →</a>`;
+});
+
+/* ============================================================
+   CHECKLIST (NEWSLETTER)
+   Kit acepta el POST desde el navegador (CORS permitido), así que
+   sí podemos leer la respuesta y distinguir el fallo del éxito.
+   El campo DEBE llamarse email_address: es el nombre que espera Kit.
+   ============================================================ */
+const ckForm = document.getElementById('checklistForm');
+const ckMsg  = document.getElementById('checklistMsg');
+const ckNota = ckMsg.textContent;
+ckForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const input = ckForm.email;
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(input.value)) {
+    ckMsg.textContent = 'Escribe un correo válido.';
+    ckMsg.style.color = '#e08a8a';
+    input.focus();
+    return;
+  }
+  const btn = ckForm.querySelector('button');
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+  ckMsg.textContent = ckNota;
+  ckMsg.style.color = '';
+
+  let ok = true;
+  if (CONFIG.checklistEndpoint) {
+    try {
+      const cuerpo = new FormData();
+      cuerpo.append('email_address', input.value);
+      const r = await fetch(CONFIG.checklistEndpoint, {method: 'POST', body: cuerpo});
+      ok = r.ok;
+    } catch (_) { ok = false; }
+  }
+
+  if (!ok) {
+    btn.disabled = false;
+    btn.textContent = 'Recibir el checklist';
+    ckMsg.innerHTML = `No pudimos suscribirte. <a href="https://wa.me/${CONFIG.whatsapp}" target="_blank" rel="noopener" style="color:var(--accent-br)">Escríbenos por WhatsApp</a> y te lo enviamos.`;
+    ckMsg.style.color = '#e08a8a';
+    return;
+  }
+
+  metaIdentity(input.value, '');
+  metaTrack('CompleteRegistration', {content_name: 'Checklist 12 preguntas', status: true});
+
+  ckForm.style.display = 'none';
+  ckMsg.style.color = 'var(--accent-br)';
+  ckMsg.textContent = 'Revisa tu correo: te enviamos un enlace para confirmar. Al confirmar se descarga tu checklist.';
 });
 
 /* ============================================================
