@@ -210,6 +210,66 @@ recibe un mensaje de descarte y el ebook. La lógica es
 
 ---
 
+## El linktree (`/links`)
+
+Página aparte, en `links/index.html`, hecha para el **bio de Instagram**. Vive
+en una carpeta y no en un subdominio a propósito: `somosmarcasalgrano.com/links`
+es más corta que `links.somosmarcasalgrano.com` y no exige tocar el hPanel — el
+mismo panel que tiene bloqueado el despliegue por Git.
+
+**Por qué no se usó Linktree:** el plan gratuito de Linktree no deja instalar el
+píxel. Aquí el bio comparte el píxel de la landing, así que ese tráfico entra a
+la misma audiencia y se puede reimpactar con anuncios. Además cada botón dispara
+`ClicBio` con el nombre del botón, para saber en un mes cuál funciona y cuál
+sobra en vez de adivinarlo.
+
+### Decisiones que no son obvias al leer el HTML
+
+- **Agendar va primero y el checklist segundo**, no al revés. El primer botón se
+  lleva la mayoría de los clics; si ahí va un PDF gratis, quien iba a agendar se
+  lleva el PDF y se va. Es la misma razón por la que el ebook está debajo del
+  formulario en la landing.
+- **WhatsApp es un icono, no un botón.** Como botón con el mismo peso que
+  agendar se lo comía: es un toque y cero compromiso, mientras agendar exige
+  elegir hora y dejar datos. Pero además **WhatsApp se salta la calificación por
+  presupuesto**, así que llenarlo de conversaciones sin filtrar cuesta horas.
+- **El enlace de WhatsApp lleva el mensaje pre-escrito**, para quitar la fricción
+  del "¿qué le escribo?" y encuadrar la conversación desde el saludo.
+- **Los iconos son SVG dibujados a mano**, no imágenes ni una librería: pesan
+  nada y toman el color de la marca. Con sus colores propios —el azul de
+  Facebook, el degradado de Instagram— se verían como pegatinas sobre el fondo
+  oscuro.
+- **`noindex`**: esta página no debe competir en buscadores con la landing.
+- **La prueba social dice 12 marcas.** El cliente cree que son más y prefirió
+  dejarlo en 12. Quedarse corto es el error seguro: nadie reclama por eso, y un
+  número que no termina en 0 ni en 5 se lee como contado, no como estimado.
+
+### Enlaces
+
+| | |
+| --- | --- |
+| Instagram | `instagram.com/marcasalgrano` |
+| Facebook | `facebook.com/61573679933526` |
+| TikTok | `tiktok.com/@marcasalgrano` |
+| WhatsApp | `wa.me/573160597375` (el mismo de la landing) |
+
+El de Facebook es el **ID numérico** porque la página todavía no tiene nombre de
+usuario. El enlace de `/share/` que da la app es una redirección temporal y no
+sirve para publicar. Cuando se le asigne usuario, cambiar por
+`facebook.com/<usuario>`.
+
+### Sin verificar todavía
+
+- **El navegador interno de Instagram.** Los enlaces del bio no abren en Safari
+  ni en Chrome, sino dentro de la app. Ahí el modal de agendar con el embed de
+  Calendly puede portarse mal. **Hay que probarlo antes de poner el enlace en el
+  bio**, no después.
+- Que los perfiles de Instagram y TikTok sean los correctos: ambas redes
+  responden a un visitante sin sesión con un muro, así que solo se confirma
+  abriéndolos desde el teléfono.
+
+---
+
 ## Trampas ya pisadas
 
 Cosas que costaron encontrar y que conviene no repetir:

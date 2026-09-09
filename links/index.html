@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marcas al Grano® — Enlaces</title>
+<meta name="description" content="Branding estratégico para marcas de café. Agenda tu diagnóstico gratuito, descarga el checklist o escríbenos.">
+
+<!-- Esta página solo existe para el bio de Instagram. No debe competir en
+     buscadores con somosmarcasalgrano.com, que es la página de verdad. -->
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://somosmarcasalgrano.com/links/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Marcas al Grano® — Branding estratégico para marcas de café">
+<meta property="og:description" content="12 marcas de café ya confiaron en nosotros. ¿Sigues tú?">
+<meta property="og:url" content="https://somosmarcasalgrano.com/links/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ══════════════ META PIXEL ══════════════
+     Mismo píxel que la landing: así el tráfico del bio de Instagram entra
+     en la misma audiencia y se puede reimpactar. Ponlo en blanco o en
+     REEMPLAZA_ID_PIXEL para desactivarlo al probar en local.
+     ═══════════════════════════════════════ -->
+<script>
+window.META_PIXEL_ID = '2291536674928306';
+
+window.metaTrackCustom = function (event, params) {
+  if (typeof fbq === 'function') fbq('trackCustom', event, params || {});
+};
+
+if (window.META_PIXEL_ID && window.META_PIXEL_ID !== 'REEMPLAZA_ID_PIXEL') {
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', window.META_PIXEL_ID);
+  fbq('track', 'PageView');
+}
+</script>
+
+<style>
+:root{
+  --bg-deep:#0D0D0D;
+  --card:#1A1A1A;
+  --border:#292929;
+  --border-hi:#3A332C;
+  --accent:#614633;
+  --accent-lt:#8B6A50;
+  --accent-br:#B08968;
+  --cream:#F5F3EE;
+  --muted:#A8A29A;
+  --dim:#6E6862;
+  --glow:rgba(232,71,138,.28);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;min-height:100svh;
+  background:var(--bg-deep);color:var(--cream);
+  font-family:var(--sans);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;
+  /* El bio se abre en pantallas pequeñas: se diseña para el pulgar. */
+  padding:2.6rem 1.25rem 2rem;
+}
+
+/* Textura de la landing, para que se sienta la misma marca */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.4;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+/* Un halo cálido detrás del logo, como el de la landing */
+body::after{
+  content:"";position:fixed;top:-12%;left:50%;transform:translateX(-50%);
+  width:min(560px,130vw);aspect-ratio:1;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(176,137,104,.14),transparent 62%);
+}
+
+main{position:relative;z-index:1;width:100%;max-width:440px;margin:0 auto}
+
+/* ── Cabecera ───────────────────────────────────────── */
+header{text-align:center;margin-bottom:2.4rem}
+.brandmark{
+  display:block;width:112px;aspect-ratio:1628/1022;margin:0 auto 1.5rem;
+  background:var(--cream);
+  -webkit-mask:url("../img/logo_mag.png") no-repeat center/contain;
+  mask:url("../img/logo_mag.png") no-repeat center/contain;
+}
+@supports not ((-webkit-mask-image:url("#m")) or (mask-image:url("#m"))){
+  .brandmark{background:none;width:auto;height:auto;font-family:var(--serif);
+             font-size:1.6rem;color:var(--cream)}
+  .brandmark::after{content:"Marcas al Grano®"}
+}
+.tagline{
+  margin:0 0 .9rem;font-size:.79rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent-br);font-weight:600;
+}
+.prueba{
+  margin:0;font-family:var(--serif);font-size:1.32rem;line-height:1.3;
+  color:var(--cream);
+}
+.prueba em{font-style:normal;color:var(--accent-br);display:block;margin-top:.15rem}
+
+/* ── Botones ────────────────────────────────────────── */
+.enlaces{display:flex;flex-direction:column;gap:.85rem}
+.enlace{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  /* 64px de alto: cómodo para el pulgar, no hay que apuntar */
+  min-height:64px;padding:.9rem 1.4rem;
+  border-radius:999px;border:1px solid transparent;
+  font-family:var(--sans);font-weight:600;font-size:1rem;
+  text-align:center;text-decoration:none;color:var(--cream);
+  background:var(--card);
+  transition:transform .2s ease,box-shadow .35s ease,filter .2s ease,background-color .2s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.enlace .sub{
+  display:block;font-weight:400;font-size:.8rem;color:var(--muted);
+  margin-top:.15rem;letter-spacing:.01em;
+}
+.enlace:active{transform:scale(.98)}
+
+.enlace.principal{
+  background:linear-gradient(180deg,var(--accent-lt),var(--accent));
+  box-shadow:0 0 0 0 var(--glow);
+}
+.enlace.principal .sub{color:rgba(245,243,238,.78)}
+.enlace.secundario{background:transparent;border-color:var(--border-hi)}
+
+@media(hover:hover){
+  .enlace.principal:hover{box-shadow:0 0 42px 6px var(--glow);transform:translateY(-2px);filter:brightness(1.07)}
+  .enlace.secundario:hover{background:rgba(255,255,255,.04)}
+}
+.enlace:focus-visible{outline:2px solid var(--accent-br);outline-offset:3px}
+
+/* ── Pie ────────────────────────────────────────────── */
+footer{margin-top:2.4rem;text-align:center}
+.redes{display:flex;justify-content:center;gap:.35rem}
+.red{
+  display:inline-flex;align-items:center;justify-content:center;
+  /* 48px de zona táctil aunque el icono mida 23: se acierta sin apuntar */
+  width:48px;height:48px;border-radius:50%;
+  color:var(--muted);text-decoration:none;
+  transition:color .2s ease,background-color .2s ease,transform .2s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.red svg{width:23px;height:23px;flex:none}
+.red:active{transform:scale(.92)}
+@media(hover:hover){
+  .red:hover{color:var(--cream);background:rgba(255,255,255,.05)}
+}
+.web{
+  display:inline-block;margin-top:1rem;font-size:.84rem;
+  color:var(--dim);text-decoration:none;
+}
+@media(hover:hover){.web:hover{color:var(--accent-br)}}
+.web:focus-visible,.red:focus-visible{outline:2px solid var(--accent-br);outline-offset:3px}
+
+@media(max-width:360px){
+  body{padding-top:2rem}
+  .brandmark{width:96px}
+  .prueba{font-size:1.18rem}
+}
+</style>
+</head>
+<body>
+
+<main>
+  <header>
+    <span class="brandmark" role="img" aria-label="Marcas al Grano"></span>
+    <p class="tagline">Branding estratégico para marcas de café</p>
+    <p class="prueba">12 marcas de café ya confiaron en nosotros.<em>¿Sigues tú?</em></p>
+  </header>
+
+  <nav class="enlaces" aria-label="Enlaces principales">
+    <a class="enlace principal" href="https://somosmarcasalgrano.com/#agenda" data-boton="agenda">
+      Agenda tu diagnóstico gratuito
+      <span class="sub">30 minutos · sin costo</span>
+    </a>
+
+    <a class="enlace secundario" href="https://somosmarcasalgrano.com/#checklist" data-boton="checklist">
+      ¿Tu marca está lista para el mercado?
+      <span class="sub">Checklist de 12 preguntas · PDF gratis</span>
+    </a>
+  </nav>
+
+  <footer>
+    <!-- El de Facebook es el ID numérico de la página, no el enlace de
+         /share/ que caduca. Sale de resolver ese enlace: la página aún no
+         tiene nombre de usuario, y por eso no hay arroba. Cuando se le
+         asigne uno, cambiar por facebook.com/<usuario>. -->
+    <nav class="redes" aria-label="Redes sociales">
+      <a class="red" data-boton="instagram" aria-label="Instagram"
+         href="https://www.instagram.com/marcasalgrano" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4"/>
+          <circle cx="12" cy="12" r="4.4"/>
+          <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+
+      <a class="red" data-boton="facebook" aria-label="Facebook"
+         href="https://www.facebook.com/61573679933526" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.9h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/>
+        </svg>
+      </a>
+
+      <a class="red" data-boton="tiktok" aria-label="TikTok"
+         href="https://www.tiktok.com/@marcasalgrano" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 0 1-2.59-2.59 2.59 2.59 0 0 1 3.1-2.54v-3.1a5.66 5.66 0 0 0-.51-.03 5.69 5.69 0 0 0-5.69 5.69 5.69 5.69 0 0 0 5.69 5.69 5.69 5.69 0 0 0 5.69-5.69V9.01a7.35 7.35 0 0 0 4.29 1.38V7.3a4.29 4.29 0 0 1-3.24-1.48z"/>
+        </svg>
+      </a>
+
+      <a class="red" data-boton="whatsapp" aria-label="Escríbenos por WhatsApp"
+         href="https://wa.me/573160597375?text=Hola%2C%20vengo%20del%20Instagram%20de%20Marcas%20al%20Grano.%20Tengo%20una%20marca%20de%20caf%C3%A9%20y%20quiero%20contarles%20en%20qu%C3%A9%20estoy."
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/>
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.85 9.85 0 0 0 12.04 2zm0 18.02h-.01c-1.52 0-3.02-.41-4.32-1.18l-.31-.18-3.21.84.86-3.13-.2-.32a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24z"/>
+        </svg>
+      </a>
+    </nav>
+
+    <a class="web" href="https://somosmarcasalgrano.com" data-boton="web">Ver la web completa</a>
+  </footer>
+</main>
+
+<script>
+/* Un evento por botón, para saber en un mes cuál funciona y cuál sobra.
+   Es un evento personalizado a propósito: NUNCA 'Lead', que está reservado
+   a quien declara presupuesto calificado en el formulario de la landing.
+   fbq envía por sendBeacon, así que el evento sobrevive a la navegación. */
+document.querySelectorAll('[data-boton]').forEach(el => {
+  el.addEventListener('click', () => {
+    metaTrackCustom('ClicBio', {boton: el.dataset.boton});
+  });
+});
+</script>
+
+</body>
+</html>
