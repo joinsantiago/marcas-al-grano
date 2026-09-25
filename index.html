@@ -1102,19 +1102,19 @@ footer{
   <div class="wrap">
     <div class="ebook rv">
       <div class="ebook-art" aria-hidden="true">
-        <p class="t">12 preguntas<em>antes de lanzar</em></p>
-        <p class="s">Ponle una nota sobre 12 a tu marca y descubre si es momento de diseñar, de corregir o de detenerte.</p>
+        <p class="t">El café ya no compite<em>solo por su sabor</em></p>
+        <p class="s">Aprende a construir una marca de café con estrategia, diferenciación y valor.</p>
         <p class="m">MARCAS AL GRANO®</p>
       </div>
       <div>
-        <span class="eyebrow">Autodiagnóstico gratuito</span>
-        <h2>¿Tu marca está lista para salir al mercado?</h2>
-        <p class="lead">Responde 12 preguntas y ponle una nota sobre 12 a tu marca. En diez minutos vas a saber si es momento de diseñar, de corregir, o de detenerte antes de gastar en empaques que no funcionan.</p>
+        <span class="eyebrow">Libro gratuito</span>
+        <h2>El café ya no compite solo por su sabor</h2>
+        <p class="lead">Te ayudamos a construirla desde cero. Adentro está cómo se construye una marca de café con estrategia, diferenciación y valor, escrito por José Arturo López, fundador de Marcas al Grano®.</p>
         <form class="ebook-form" id="checklistForm" novalidate>
           <input type="email" name="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
-          <button type="submit" class="btn">Recibir el checklist</button>
+          <button type="submit" class="btn">Descargar gratis</button>
         </form>
-        <p class="note" id="checklistMsg">16 páginas · PDF · Te llega por correo</p>
+        <p class="note" id="checklistMsg">PDF · Te llega por correo</p>
         <p class="note consent">Al suscribirte quedas en la lista de Marcas al Grano. Puedes darte de baja cuando quieras.</p>
       </div>
     </div>
@@ -1201,7 +1201,7 @@ footer{
         <a href="#programas">Programas</a>
         <a href="#metodologia">Metodología</a>
         <a href="#casos">Casos</a>
-        <a href="#checklist">Checklist</a>
+        <a href="#checklist">Libro</a>
         <a href="#faq">FAQ</a>
       </nav>
     </div>
@@ -1741,18 +1741,18 @@ ckForm.addEventListener('submit', async e => {
 
   if (!ok) {
     btn.disabled = false;
-    btn.textContent = 'Recibir el checklist';
+    btn.textContent = 'Descargar gratis';
     ckMsg.innerHTML = `No pudimos suscribirte. <a href="https://wa.me/${CONFIG.whatsapp}" target="_blank" rel="noopener" style="color:var(--accent-br)">Escríbenos por WhatsApp</a> y te lo enviamos.`;
     ckMsg.style.color = '#e08a8a';
     return;
   }
 
   metaIdentity(input.value, '');
-  metaTrack('CompleteRegistration', {content_name: 'Checklist 12 preguntas', status: true});
+  metaTrack('CompleteRegistration', {content_name: 'Libro El cafe ya no compite solo por su sabor', status: true});
 
   ckForm.style.display = 'none';
   ckMsg.style.color = 'var(--accent-br)';
-  ckMsg.textContent = 'Revisa tu correo: te enviamos un enlace para confirmar. Al confirmar se descarga tu checklist.';
+  ckMsg.textContent = 'Revisa tu correo: te enviamos un enlace para confirmar. Al confirmar se descarga tu libro.';
 });
 
 /* ============================================================
