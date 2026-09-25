@@ -1,3 +1,9 @@
 .DS_Store
 *.mp4
 *.mov
+
+# Material de origen del libro: el PDF lo entrega Kit tras confirmar el correo.
+# Este repo es publico, asi que subirlo aqui regalaria el libro sin pedir el
+# correo, que es justo lo que la seccion existe para evitar.
+LIBRO MARCAS AL GRANO.pdf
+banner del libro mag.jpeg
