@@ -404,6 +404,9 @@ header.stuck{border-bottom-color:var(--border);background:rgba(13,13,13,.92)}
 .ebook-art .t em{font-style:normal;color:var(--accent-br);display:block}
 .ebook-art .s{margin-top:1rem;font-size:.78rem;color:var(--muted);line-height:1.5}
 .ebook-art .m{position:absolute;bottom:1.3rem;left:2rem;font-size:.62rem;letter-spacing:.16em;color:var(--dim)}
+/* Variante con la portada real del libro: la imagen manda su propia proporcion */
+.ebook-art.portada{aspect-ratio:562/900;padding:0;background:none}
+.ebook-art.portada img{width:100%;height:100%;object-fit:cover;display:block}
 .ebook h2{font-size:clamp(1.6rem,3.2vw,2.3rem);margin-bottom:1rem}
 .ebook-form{display:flex;gap:.7rem;margin-top:1.6rem;flex-wrap:wrap}
 .ebook-form input{flex:1 1 220px}
@@ -1101,10 +1104,8 @@ footer{
 <section class="sec grain" id="checklist">
   <div class="wrap">
     <div class="ebook rv">
-      <div class="ebook-art" aria-hidden="true">
-        <p class="t">El café ya no compite<em>solo por su sabor</em></p>
-        <p class="s">Aprende a construir una marca de café con estrategia, diferenciación y valor.</p>
-        <p class="m">MARCAS AL GRANO®</p>
+      <div class="ebook-art portada">
+        <img src="img/libro-portada.jpg" width="562" height="900" alt="Portada del libro El café ya no compite solo por su sabor, de José Arturo López">
       </div>
       <div>
         <span class="eyebrow">Libro gratuito</span>
