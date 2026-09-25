@@ -57,7 +57,7 @@ distinguir el tráfico del QR del resto.
 | | Estado |
 | --- | --- |
 | `index.html` con los textos del libro | ✅ Publicado |
-| `img/libro-portada.jpg` | ⚠️ **Está el banner, no la portada.** 1081 × 1351 y 401 KB, subido con el nombre cambiado. Hay que reemplazarlo por el del repo (562 × 900, 76 KB) y recargar con Cmd+Shift+R: las imágenes se cachean una semana |
+| `img/libro-portada.jpg` | ✅ Publicada y correcta (562 × 900). Antes estuvo el banner (1081 × 1351, 401 KB) subido con el nombre cambiado; ya se reemplazó. **Al cambiar una imagen hay que recargar con Cmd+Shift+R**: el servidor las cachea una semana |
 | `links/index.html` | ❌ **Sin subir.** Sigue diciendo «Agenda tu diagnóstico gratuito» y «¿Tu marca está lista para el mercado?» |
 | `checklist-12-preguntas.pdf` | ⚠️ **Sigue abierto al público.** Hay que borrarlo de `public_html/` |
 | `.htaccess` | ❌ **Sin subir.** `www` sigue sin redirigir al dominio raíz |
@@ -119,8 +119,8 @@ el libro. El PDF pesa 7,6 MB; si Kit lo rechaza, hay que comprimirlo.
 1. **Arreglar la entrega de Kit** (arriba). Sin esto, cada suscriptor nuevo se
    pierde: entra a la lista y nunca recibe el libro.
 2. **Cambiar el PDF en Kit** al libro.
-3. **Subir a Hostinger** `img/libro-portada.jpg` (el bueno), `links/index.html`,
-   el `.htaccess`, y **borrar** `checklist-12-preguntas.pdf`.
+3. **Subir a Hostinger** `links/index.html` y el `.htaccess`, y **borrar**
+   `checklist-12-preguntas.pdf`. (La portada ya quedó bien.)
 4. **Actualizar la conversión personalizada de Meta** al `content_name` nuevo.
 5. **Probar el recorrido en un teléfono real y dentro del navegador de
    Instagram**, agendando y cancelando. Nunca se ha hecho.
