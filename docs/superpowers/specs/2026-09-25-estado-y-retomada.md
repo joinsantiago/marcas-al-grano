@@ -1,6 +1,7 @@
 # Estado y retomada — landing Marcas al Grano
 
-**Fecha:** 2026-09-25 · **Último commit:** ver `git log -1` · **Rama:** `main`
+**Fecha:** 2026-09-25 · **Verificado de nuevo contra el servidor el 2026-09-30**
+**Último commit:** `855927f` · **Rama:** `main` · **Todo subido a GitHub**
 
 Supersede como foto del estado a `2026-09-15-estado-y-retomada.md`. Aquel sigue
 valiendo como registro del newsletter y el linktree; lo de aquí es lo que cambió
@@ -52,13 +53,13 @@ distinguir el tráfico del QR del resto.
 
 ---
 
-## Estado en el servidor (verificado el 2026-09-25)
+## Estado en el servidor (verificado el 2026-09-30)
 
 | | Estado |
 | --- | --- |
 | `index.html` con los textos del libro | ✅ Publicado |
 | `img/libro-portada.jpg` | ✅ Publicada y correcta (562 × 900). Antes estuvo el banner (1081 × 1351, 401 KB) subido con el nombre cambiado; ya se reemplazó. **Al cambiar una imagen hay que recargar con Cmd+Shift+R**: el servidor las cachea una semana |
-| `links/index.html` | ❌ **Sin subir.** Sigue diciendo «Agenda tu diagnóstico gratuito» y «¿Tu marca está lista para el mercado?» |
+| `links/index.html` | ✅ **Publicado el 2026-09-30.** Ya dice «Agenda tu diagnóstico» y «Descarga gratis el libro». (La descripción para buscadores de esa página todavía dice «gratuito», pero lleva `noindex`: es cosmético) |
 | `checklist-12-preguntas.pdf` | ⚠️ **Sigue abierto al público.** Hay que borrarlo de `public_html/` |
 | `.htaccess` | ❌ **Sin subir.** `www` sigue sin redirigir al dominio raíz |
 
@@ -97,6 +98,9 @@ repo, y Kit acepta la petición.
   quien ya se suscribió. Hay que reprobar con correos nuevos (sirve
   `tucorreo+libro2@gmail.com`) y borrar los de prueba.
 
+**Estado al 2026-09-30: sin verificar.** No se ha vuelto a probar el circuito,
+así que no se sabe si el interruptor era la causa. Al retomar, empezar por ahí.
+
 **Y sigue pendiente lo de siempre en Kit:** cambiar el archivo que se entrega
 (*Settings → Incentive → Choose a file*). Hoy sigue entregando el checklist, no
 el libro. El PDF pesa 7,6 MB; si Kit lo rechaza, hay que comprimirlo.
@@ -119,8 +123,9 @@ el libro. El PDF pesa 7,6 MB; si Kit lo rechaza, hay que comprimirlo.
 1. **Arreglar la entrega de Kit** (arriba). Sin esto, cada suscriptor nuevo se
    pierde: entra a la lista y nunca recibe el libro.
 2. **Cambiar el PDF en Kit** al libro.
-3. **Subir a Hostinger** `links/index.html` y el `.htaccess`, y **borrar**
-   `checklist-12-preguntas.pdf`. (La portada ya quedó bien.)
+3. **Subir el `.htaccess`** y **borrar** `checklist-12-preguntas.pdf` de
+   `public_html/`. Es lo único que queda por subir: la portada y el linktree ya
+   quedaron bien.
 4. **Actualizar la conversión personalizada de Meta** al `content_name` nuevo.
 5. **Probar el recorrido en un teléfono real y dentro del navegador de
    Instagram**, agendando y cancelando. Nunca se ha hecho.
